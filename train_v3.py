@@ -75,9 +75,7 @@ def main():
     ).to(config.DEVICE)
 
     for epoch in range(config.NUM_EPOCHS):
-        #plot_couple_examples(model, test_loader, 0.6, 0.5, scaled_anchors)
         train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors)
-
         if epoch > 0 and epoch % 3 == 0:
             check_class_accuracy(model, test_loader, threshold=config.CONF_THRESHOLD)
             pred_boxes, true_boxes = get_evaluation_bboxes(
@@ -96,7 +94,13 @@ def main():
             )
             print(f"MAP: {mapval.item()}")
             model.train()
-
+        if epoch > 99:
+            for x, y in train_loader:
+            x = x.to(DEVICE)
+            for idx in range(8):
+                bboxes = cellboxes_to_boxes(model(x))
+                bboxes = non_max_suppression(bboxes[idx], iou_threshold=0.5, threshold=0.4)
+                plot_image(x[idx].permute(1,2,0).to("cpu"), bboxes, idx)
 
 if __name__ == "__main__":
     main()
