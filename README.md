@@ -25,8 +25,9 @@ zip_ref.extractall()  <br />
 zip_ref.close()  <br />
 
 # To get BCCD 2021 Dataset, run:
-!git clone 'https://github.com/Shenggan/BCCD_Dataset.git'
-
+!git clone 'https://github.com/Shenggan/BCCD_Dataset.git'<br />
+!mv drive/MyDrive/BCCD/images/train2017/*.jpg data/images/  <br />
+!mv drive/MyDrive/BCCD/labels/train2017/*.txt data/labels/ <br />
 
 # update albumentation package 
 !pip install -U albumentations
