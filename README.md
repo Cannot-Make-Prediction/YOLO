@@ -14,7 +14,7 @@ Exploration of object detection architectures
 #Or run:
 !pip install -q kaggle  <br />
 !mkdir ~/.kaggle  <br />
-# upload your kaggle permission file
+upload your kaggle permission file  <br />
 !cp kaggle.json ~/.kaggle/  <br />
 !chmod 600 ~/.kaggle/kaggle.json  <br /> 
 !kaggle datasets download -d aladdinpersson/pascal-voc-dataset-used-in-yolov3-video  <br />
