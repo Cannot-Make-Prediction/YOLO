@@ -1,7 +1,3 @@
-"""
-Main file for training Yolo model on Pascal VOC and COCO dataset
-"""
-
 import config
 import torch
 import torch.optim as optim
@@ -81,14 +77,6 @@ def main():
     for epoch in range(config.NUM_EPOCHS):
         #plot_couple_examples(model, test_loader, 0.6, 0.5, scaled_anchors)
         train_fn(train_loader, model, optimizer, loss_fn, scaler, scaled_anchors)
-
-        #if config.SAVE_MODEL:
-        #    save_checkpoint(model, optimizer, filename=f"checkpoint.pth.tar")
-
-        #print(f"Currently epoch {epoch}")
-        #print("On Train Eval loader:")
-        #print("On Train loader:")
-        #check_class_accuracy(model, train_loader, threshold=config.CONF_THRESHOLD)
 
         if epoch > 0 and epoch % 3 == 0:
             check_class_accuracy(model, test_loader, threshold=config.CONF_THRESHOLD)
